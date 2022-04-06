@@ -3,13 +3,17 @@ package com.e7878a.externalfilewrite;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.os.Environment;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String ASSETS_TEXT = "privacy_zh_CN.html";
-    public static final String ASSETS_IMAGE = "alipay.png";
-    public static final String ASSETS_MP3 = "bgm.mp3";
+    public static final String ASSETS_TXT = "txt.txt";
+    public static final String ASSETS_HTML = "html.html";
+    public static final String ASSETS_XML = "xml.xml";
+    public static final String ASSETS_CSS = "css.css";
+    public static final String ASSETS_IMAGE = "image.png";
+    public static final String ASSETS_MP3 = "mp3.mp3";
+    public static final String ASSETS_MP4 = "mp4.mp4";
+    public static final String ASSETS_JSON = "json.json";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,25 +23,66 @@ public class MainActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                FileManager.writeAssetsToSDWithFileProvider(MainActivity.this,
-                        Environment.DIRECTORY_DOCUMENTS, "隐私政策.html", ASSETS_TEXT);
+                FileManager.writeAssetsToSDWithMediaStore(MainActivity.this,
+                        FileType.DOCUMENTS, "txt.txt", ASSETS_TXT);
             }
         }).start();
 
         new Thread(new Runnable() {
             @Override
             public void run() {
-                FileManager.writeAssetsToSDWithFileProvider(MainActivity.this,
-                        Environment.DIRECTORY_PICTURES, "alipay.png", ASSETS_IMAGE);
+                FileManager.writeAssetsToSDWithMediaStore(MainActivity.this,
+                        FileType.DOCUMENTS, "国际上网隐私政策.html", ASSETS_HTML);
             }
         }).start();
 
         new Thread(new Runnable() {
             @Override
             public void run() {
-                FileManager.writeAssetsToSDWithFileProvider(MainActivity.this,
-                        Environment.DIRECTORY_MUSIC, "bgm.mp3", ASSETS_MP3);
+                FileManager.writeAssetsToSDWithMediaStore(MainActivity.this,
+                        FileType.DOCUMENTS, "xml.xml", ASSETS_XML);
             }
         }).start();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                FileManager.writeAssetsToSDWithMediaStore(MainActivity.this,
+                        FileType.DOCUMENTS, "css.css", ASSETS_CSS);
+            }
+        }).start();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                FileManager.writeAssetsToSDWithMediaStore(MainActivity.this,
+                        FileType.PICTURES, "image.png", ASSETS_IMAGE);
+            }
+        }).start();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                FileManager.writeAssetsToSDWithMediaStore(MainActivity.this,
+                        FileType.MUSIC, "mp3.mp3", ASSETS_MP3);
+            }
+        }).start();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                FileManager.writeAssetsToSDWithMediaStore(MainActivity.this,
+                        FileType.MOVIES, "mp4.mp4", ASSETS_MP4);
+            }
+        }).start();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                FileManager.writeAssetsToSDWithMediaStore(MainActivity.this,
+                        FileType.OTHERS, "json.json", ASSETS_JSON);
+            }
+        }).start();
+
     }
 }
